@@ -5,6 +5,7 @@ Created on Oct 20, 2017
 '''
 import sys
 import pygame
+
 from pygame.sprite import Group
 from settings import Settings
 from star import Star
@@ -22,12 +23,12 @@ def run_project():
     star = Star(env_settings, screen)
 
     while True:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
         screen.fill(env_settings.bg_color)
 
-        # screen.fill(env_settings.bg_color)
         star.blitme()
         pygame.display.flip()
 

@@ -10,6 +10,9 @@ class Settings():
 
     def __init__(self):
         # Screen
-        self.screen_width = 400
+        self.screen_width = 800
         self.screen_height = 600
         self.bg_color = (255, 255, 255)
+
+        # Star
+        self.star_size_factor = 5
