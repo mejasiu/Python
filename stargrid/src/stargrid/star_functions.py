@@ -15,7 +15,6 @@ def createStarfeild(stars, screen, settings):
     star = Star(settings, screen)
     star_width = star.rect.width
     star_height = star.rect.height
-    #print("Star Width " + str(star_width))
 
     # Using the screen size we can figure out how many stars can fit on the screen
     # settings.screen_height
@@ -23,19 +22,14 @@ def createStarfeild(stars, screen, settings):
 
     # Calculate X axis
     gapBetweenStarsX = star_width / 2
-    #print("Gap between stars " + str(gapBetweenStars))
-    # have to subtract the edges from the full screen
-    available_spaceX = settings.screen_width - (2 * gapBetweenStarsX)
-    number_of_StarsinRow = int(
-        available_spaceX / (gapBetweenStarsX + star_width))
-    #print("available_spaceX " + str(available_spaceX))
-    #print("number_of_StarsinRow " + str(number_of_StarsinRow))
+    number_of_StarsinRow = calcStarsInRow(
+        gapBetweenStarsX, settings, star_width)
 
     # Calculate Y Axis
     gapBetweenStarsY = star_height / 2
-    available_spaceY = settings.screen_height - (2 * gapBetweenStarsY)
-    numberRowsOnScreen = int(
-        available_spaceY / (gapBetweenStarsY + star_height))
+    numberRowsOnScreen = calcStarsInColumn(
+        gapBetweenStarsY, settings, star_height)
+
     for star_row_number in range(numberRowsOnScreen):
         star_y_position = gapBetweenStarsY + \
             (gapBetweenStarsY + star_height) * star_row_number
@@ -53,3 +47,17 @@ def createStarfeild(stars, screen, settings):
             star.rect.x = star.x
             star.rect.y = star.y
             stars.add(star)
+
+
+def calcStarsInRow(gapBetweenStarsX, settings, star_width):
+    available_spaceX = settings.screen_width - (2 * gapBetweenStarsX)
+    number_of_StarsinRow = int(
+        available_spaceX / (gapBetweenStarsX + star_width))
+    return number_of_StarsinRow
+
+
+def calcStarsInColumn(gapBetweenStarsY, settings, star_height):
+    available_spaceY = settings.screen_height - (2 * gapBetweenStarsY)
+    numberRowsOnScreen = int(
+        available_spaceY / (gapBetweenStarsY + star_height))
+    return numberRowsOnScreen
