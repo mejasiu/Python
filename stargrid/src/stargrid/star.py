@@ -4,17 +4,17 @@ Created on Oct 20, 2017
 @author: jaroszyn
 '''
 import pygame
-#from pygame.sprite import Sprite
+from pygame.sprite import Sprite
 
 
-class Star():
+class Star(Sprite):
     """A class to represent a single star in the grid
     """
 
     def __init__(self, env_settings, screen):
         """Initialize the star onto the screen
         """
-        # super().__init__()
+        super().__init__()
         self.screen = screen
         self.ai_setting = env_settings
 

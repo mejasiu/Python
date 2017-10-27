@@ -9,6 +9,7 @@ import pygame
 from pygame.sprite import Group
 from settings import Settings
 from star import Star
+import star_functions as strfunc
 
 
 def run_project():
@@ -20,7 +21,13 @@ def run_project():
     pygame.display.set_caption("Star Map")
 
     # Make a new star object
-    star = Star(env_settings, screen)
+    # star = Star(env_settings, screen)
+
+    # Make a the star field
+    stars = Group()
+
+    # Create star map
+    strfunc.createStarfeild(stars, screen, env_settings)
 
     while True:
 
@@ -29,7 +36,10 @@ def run_project():
                 sys.exit()
         screen.fill(env_settings.bg_color)
 
-        star.blitme()
+        # Draw starts on the screen
+        stars.draw(screen)
+
+        # star.blitme()
         pygame.display.flip()
 
 
