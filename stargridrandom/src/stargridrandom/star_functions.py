@@ -4,6 +4,7 @@ Created on Oct 25, 2017
 @author: jaroszyn
 '''
 from star import Star
+from random import randint
 
 
 def createStarfeild(stars, screen, settings):
@@ -34,13 +35,13 @@ def createStarfeild(stars, screen, settings):
             # Create stars
             star = Star(settings, screen)
             # Set star Y axis
-            star.y = calcStar_Y_Position(
-                gapBetweenStarsY, star_height, star_row_number)
+            star.y = moveStarRandomly(calcStar_Y_Position(
+                gapBetweenStarsY, star_height, star_row_number))
             # find the X location of the star
             # The first multiples the gap by the star width to find the position by multipling it to the star number.
             # Then the gap is added
-            star.x = gapBetweenStarsX + \
-                (gapBetweenStarsX + star_width) * star_number
+            star.x = moveStarRandomly(gapBetweenStarsX +
+                                      (gapBetweenStarsX + star_width) * star_number)
             star.rect.x = star.x
             star.rect.y = star.y
             stars.add(star)
@@ -58,3 +59,9 @@ def calcStarsInColumn(gapBetweenStarsY, settings, star_height):
 
 def calcStar_Y_Position(gapBetweenStarsY, star_height, star_row_number):
     return gapBetweenStarsY + (gapBetweenStarsY + star_height) * star_row_number
+
+
+def moveStarRandomly(position):
+    """This position that it can move will be x or y"""
+    random_number = randint(-50, 50)
+    return random_number + position

@@ -15,4 +15,4 @@ class Settings():
         self.bg_color = (255, 255, 255)
 
         # Star
-        self.star_size_factor = 5
+        self.star_size_factor = 10
