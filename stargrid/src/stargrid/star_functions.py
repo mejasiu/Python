@@ -31,19 +31,17 @@ def createStarfeild(stars, screen, settings):
         gapBetweenStarsY, settings, star_height)
 
     for star_row_number in range(numberRowsOnScreen):
-        star_y_position = gapBetweenStarsY + \
-            (gapBetweenStarsY + star_height) * star_row_number
         for star_number in range(number_of_StarsinRow):
             # Create stars
             star = Star(settings, screen)
             # Set star Y axis
-            star.y = star_y_position
+            star.y = calcStar_Y_Position(
+                gapBetweenStarsY, star_height, star_row_number)
             # find the X location of the star
             # The first multiples the gap by the star width to find the position by multipling it to the star number.
             # Then the gap is added
             star.x = gapBetweenStarsX + \
                 (gapBetweenStarsX + star_width) * star_number
-            #print(str(star_number) + " star.x " + str(star.x))
             star.rect.x = star.x
             star.rect.y = star.y
             stars.add(star)
@@ -51,13 +49,13 @@ def createStarfeild(stars, screen, settings):
 
 def calcStarsInRow(gapBetweenStarsX, settings, star_width):
     available_spaceX = settings.screen_width - (2 * gapBetweenStarsX)
-    number_of_StarsinRow = int(
-        available_spaceX / (gapBetweenStarsX + star_width))
-    return number_of_StarsinRow
+    return int(available_spaceX / (gapBetweenStarsX + star_width))
 
 
 def calcStarsInColumn(gapBetweenStarsY, settings, star_height):
     available_spaceY = settings.screen_height - (2 * gapBetweenStarsY)
-    numberRowsOnScreen = int(
-        available_spaceY / (gapBetweenStarsY + star_height))
-    return numberRowsOnScreen
+    return int(available_spaceY / (gapBetweenStarsY + star_height))
+
+
+def calcStar_Y_Position(gapBetweenStarsY, star_height, star_row_number):
+    return gapBetweenStarsY + (gapBetweenStarsY + star_height) * star_row_number
