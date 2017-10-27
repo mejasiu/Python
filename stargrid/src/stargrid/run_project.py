@@ -8,7 +8,6 @@ import pygame
 
 from pygame.sprite import Group
 from settings import Settings
-from star import Star
 import star_functions as strfunc
 
 
