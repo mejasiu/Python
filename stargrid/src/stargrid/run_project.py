@@ -3,8 +3,8 @@ Created on Oct 20, 2017
 
 @author: jaroszyn
 '''
-import sys
 import pygame
+import sys
 
 from pygame.sprite import Group
 from settings import Settings
@@ -18,9 +18,6 @@ def run_project():
     screen = pygame.display.set_mode(
         (env_settings.screen_width, env_settings.screen_height))
     pygame.display.set_caption("Star Map")
-
-    # Make a new star object
-    # star = Star(env_settings, screen)
 
     # Make a the star field
     stars = Group()
