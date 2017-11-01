@@ -8,8 +8,6 @@ import sys
 
 from pygame.sprite import Group
 from rain_settings import Settings
-#from rain_drop import Drop
-#from random import randint
 import rain_functions as rf
 
 
@@ -21,23 +19,11 @@ def run_project():
         (rain_settings.screen_width, rain_settings.screen_height))
     pygame.display.set_caption("Raining")
 
-    # Make a rain droplet
-    # droplet = Drop(rain_settings, screen)
-
+    # Make a rain droplet group
     raining_drops = Group()
 
     # We will make this a more gray color
     background_drops = Group()
-    # gray
-    gray_drop_color = (200, 200, 200)
-
-    # Create star map
-    #strfunc.createStarfeild(stars, screen, env_settings)
-    position_x = 0
-    position_y = 0
-
-    # Random position of the rain drop falling
-    # position_x = randint(0, rain_settings.screen_width)
 
     while True:
         for event in pygame.event.get():
@@ -48,7 +34,7 @@ def run_project():
         rf.makeItRain(rain_settings, screen,
                       raining_drops, rain_settings.drop_color, rain_settings.drop_speed)
         rf.makeItRain(rain_settings, screen, background_drops,
-                      gray_drop_color, 0.75)
+                      rain_settings.gray_drop_color, rain_settings.slower_drop_speed)
         rf.drawDroppetMoveDownScreen(raining_drops)
         rf.drawDroppetMoveDownScreen(background_drops)
         rf.removeDroppletsFromMemory(raining_drops, rain_settings)

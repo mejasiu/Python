@@ -18,10 +18,10 @@ def makeItRain(settings, screen, raining_drops, drop_color, drop_speed):
     # I will set the X value randomly.  I will also set the Y value randomly as well so that
     # all the rain comes down at a different moment
     rain_drop_count = countRainDrops(raining_drops)
-    print("count " + str(rain_drop_count))
+    #print("count " + str(rain_drop_count))
     if (rain_drop_count < settings.drop_count):
         sum = settings.drop_count - rain_drop_count
-        print(sum)
+       # print(sum)
         for drops in range(sum):
             # make the droplet
             droplet = Drop(settings, screen, drop_color, drop_speed)
@@ -30,7 +30,7 @@ def makeItRain(settings, screen, raining_drops, drop_color, drop_speed):
             droplet.position_y = randint(-settings.screen_height, 0)
             droplet.draw_rain_drop()
             raining_drops.add(droplet)
-            print("Added a drop")
+            #print("Added a drop")
 
 
 def drawDroppetMoveDownScreen(raining_drops):
@@ -43,7 +43,7 @@ def removeDroppletsFromMemory(raining_drops, settings):
     for droplets in raining_drops:
         if droplets.position_y > settings.screen_height:
             raining_drops.remove(droplets)
-            print("Removed droplet from memory")
+            #print("Removed droplet from memory")
 
 
 def countRainDrops(raining_drops):
