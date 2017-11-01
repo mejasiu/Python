@@ -26,6 +26,11 @@ def run_project():
 
     raining_drops = Group()
 
+    # We will make this a more gray color
+    background_drops = Group()
+    # gray
+    gray_drop_color = (200, 200, 200)
+
     # Create star map
     #strfunc.createStarfeild(stars, screen, env_settings)
     position_x = 0
@@ -39,11 +44,15 @@ def run_project():
             if event.type == pygame.QUIT:
                 sys.exit()
         screen.fill(rain_settings.bg_color)
-        # droplet.draw_rain_drop(position_x, position_y)
-        rf.makeItRain(rain_settings, screen, raining_drops)
+
+        rf.makeItRain(rain_settings, screen,
+                      raining_drops, rain_settings.drop_color, rain_settings.drop_speed)
+        rf.makeItRain(rain_settings, screen, background_drops,
+                      gray_drop_color, 0.75)
         rf.drawDroppetMoveDownScreen(raining_drops)
+        rf.drawDroppetMoveDownScreen(background_drops)
         rf.removeDroppletsFromMemory(raining_drops, rain_settings)
-        #position_y += 1
+        rf.removeDroppletsFromMemory(background_drops, rain_settings)
 
         pygame.display.update()
         pygame.display.flip()

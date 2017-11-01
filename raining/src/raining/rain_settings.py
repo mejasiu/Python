@@ -17,7 +17,7 @@ class Settings():
         # Droplet
         self.drop_width = 2
         self.drop_height = 11
-        self.drop_speed = 3
+        self.drop_speed = 1
         self.drop_color = (0, 0, 0)
 
         # Rain

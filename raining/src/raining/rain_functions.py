@@ -10,7 +10,7 @@ from rain_drop import Drop
 from rain_settings import Settings
 
 
-def makeItRain(settings, screen, raining_drops):
+def makeItRain(settings, screen, raining_drops, drop_color, drop_speed):
     """This function will create rain that fall from the sky"""
     # This will have to be a function outside of Rain_drop because I would have to have a
     # Rain drop object to be able to make it rain, but since the make_it_rain object already
@@ -24,7 +24,7 @@ def makeItRain(settings, screen, raining_drops):
         print(sum)
         for drops in range(sum):
             # make the droplet
-            droplet = Drop(settings, screen)
+            droplet = Drop(settings, screen, drop_color, drop_speed)
             # Set the position
             droplet.position_x = randint(0, settings.screen_width)
             droplet.position_y = randint(-settings.screen_height, 0)
