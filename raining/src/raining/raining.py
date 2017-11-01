@@ -8,8 +8,9 @@ import sys
 
 from pygame.sprite import Group
 from rain_settings import Settings
-from rain_drop import Drop
-from random import randint
+#from rain_drop import Drop
+#from random import randint
+import rain_functions as rf
 
 
 def run_project():
@@ -38,12 +39,11 @@ def run_project():
             if event.type == pygame.QUIT:
                 sys.exit()
         screen.fill(rain_settings.bg_color)
-
-        # Draw starts on the screen
-        # stars.draw(screen)
-
-        droplet.draw_rain_drop(position_x, position_y)
-        position_y += 1
+        # droplet.draw_rain_drop(position_x, position_y)
+        rf.makeItRain(rain_settings, screen, raining_drops)
+        rf.drawDroppetMoveDownScreen(raining_drops)
+        rf.removeDroppletsFromMemory(raining_drops, rain_settings)
+        #position_y += 1
 
         pygame.display.update()
         pygame.display.flip()

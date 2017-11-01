@@ -15,10 +15,10 @@ class Settings():
         self.bg_color = (255, 255, 255)
 
         # Droplet
-        self.drop_width = 3
+        self.drop_width = 2
         self.drop_height = 11
         self.drop_speed = 3
         self.drop_color = (0, 0, 0)
 
         # Rain
-        self.drop_count = 20
+        self.drop_count = 800
