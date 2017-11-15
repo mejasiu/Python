@@ -33,6 +33,9 @@ class Settings():
 
         self.initialize_dynamic_settings()
 
+        # Scoring
+        self.alien_points = 50
+
     def initialize_dynamic_settings(self):
         """
         Initialize settings that change throughout the game

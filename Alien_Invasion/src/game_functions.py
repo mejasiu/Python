@@ -65,7 +65,7 @@ def check_play_button(ai_settings, screen, stats, ship, aliens, bullets, play_bu
         ship.center_ship()
 
 
-def update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, bullets, aliens, play_button):
     """Update images on the screen, and flip to the new screen."""
     # Redraw the screen, each pass through the loop.
     screen.fill(ai_settings.bg_color)
@@ -77,6 +77,9 @@ def update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button
     ship.blitme()
     aliens.draw(screen)
 
+    # Draw the score
+    sb.show_score()
+
     # Draw the play button if the game is inactive.
     if not stats.game_active:
         play_button.draw_button()
@@ -85,7 +88,7 @@ def update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button
     pygame.display.flip()
 
 
-def update_bullets(ai_settings, aliens, screen, ship, bullets):
+def update_bullets(ai_settings, screen, stats, sb,  ship, aliens, bullets):
     """This will update the bullets on the screen and remove the old ones"""
     bullets.update()
 
@@ -94,15 +97,20 @@ def update_bullets(ai_settings, aliens, screen, ship, bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(
+        ai_settings, screen, stats, sb,  ship, aliens, bullets)
 
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Respond to bullet-alien collisions.
     """
     # Check for any bullets that have hit aliens.
     # If so, get rid of the bullet and the alien.
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if collisions:
+        stats.score += ai_settings.alien_points
+        sb.prep_score()
 
     if len(aliens) == 0:
         # Destory existing bullets, speed up game and create new fleet.
